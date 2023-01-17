@@ -2,7 +2,7 @@ import react from "react"
 
 
 
-function Villa() {
+function Villa(props) {
 
     const [formData,setFormData] = react.useState({
         inkopspris:"0",
@@ -12,6 +12,10 @@ function Villa() {
         ovrigt:"0",
     })
     
+    function minValue(){
+        
+        return formData.inkopspris*0.15
+    }
     function handleChange(event) {    
         setFormData(prevFormData => {
             return {
@@ -49,9 +53,9 @@ function Villa() {
         <input type="range"
         name="kontantinstats"
         max={5000000}
-        min={0}
+        min={minValue()}
         step ={10000}
-        defaultValue ={0}
+        defaultValue ={minValue()}
         onChange={handleChange} />
 
     <label className="block text-white text-l font-bold mb-2" >

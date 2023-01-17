@@ -1,14 +1,23 @@
 import react from "react"
-function Bostadsratt() {
+function Bostadsratt(props) {
+
 
     const [formData,setFormData] = react.useState({
         inkopspris:"0",
-        kontantinstats:"0",
+        kontantinstats: "0",
         ranta:"0",
         el: "0",
         sopor:"0",
         varme:"0",
     })
+
+    const [minimum,setminimum] = react.useState("0")
+
+
+    function minValue(){
+        
+        return formData.inkopspris*0.15
+    }
     
     function handleChange(event) {    
         setFormData(prevFormData => {
@@ -26,7 +35,7 @@ function Bostadsratt() {
   
         <h1 className="text-slate-100 text-2xl">Bostadsrätt</h1>
 
-        <div className = "w-64 flex flex-col items-center justify-center">
+        <div className = "w-full flex flex-col items-center justify-center">
 
 
         <label className="block text-white text-l font-bold mb-2" >
@@ -42,14 +51,14 @@ function Bostadsratt() {
 
 
     <label className="block text-white text-l font-bold mb-2" >
-        kontantinstats: {formData.kontantinstats}kr
+        Kontantinstats: {formData.kontantinstats}kr (min 15%)
       </label>
         <input type="range"
         name="kontantinstats"
-        max={5000000}
-        min={0}
+        max={formData.inkopspris}
+        min={minValue()}
         step ={10000}
-        defaultValue ={0}
+        defaultValue ={minValue()}
         onChange={handleChange} />
 
     <label className="block text-white text-l font-bold mb-2" >
