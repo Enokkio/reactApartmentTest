@@ -1,5 +1,6 @@
 import react from "react"
 
+import FinalePrice from "../finalPrice/finalpricecalc.js"
 
 
 function Villa(props) {
@@ -10,6 +11,7 @@ function Villa(props) {
         ranta:"0",
         avgift: "0",
         ovrigt:"0",
+        avbetalningstid:"0",
     })
     
     function minValue(){
@@ -30,9 +32,9 @@ function Villa(props) {
     return (
       <div className="flex flex-col items-center justify-center">
   
-        <h1 className="text-slate-100 text-2xl">Villa</h1>
+        <h1 className="text-slate-100 text-2xl">Bostadsrätt</h1>
 
-        <div className = "w-64 flex flex-col items-center justify-center">
+        <div className = "w-full flex flex-col items-center justify-center">
 
 
         <label className="block text-white text-l font-bold mb-2" >
@@ -48,7 +50,7 @@ function Villa(props) {
 
 
     <label className="block text-white text-l font-bold mb-2" >
-        kontantinstats: {formData.kontantinstats}kr
+        kontantinstats: {formData.kontantinstats}kr (min 15%)
       </label>
         <input type="range"
         name="kontantinstats"
@@ -59,7 +61,7 @@ function Villa(props) {
         onChange={handleChange} />
 
     <label className="block text-white text-l font-bold mb-2" >
-        Ränta: {formData.ranta}%
+        Ränta: {formData.ranta}% 
       </label>
         <input type="range"
         name="ranta"
@@ -91,9 +93,26 @@ function Villa(props) {
         defaultValue ={0}
         onChange={handleChange} />
 
+
+<label className="block text-white text-l font-bold mb-2" >
+       Avbetalningstid: {formData.avbetalningstid} År
+      </label>
+        <input type="range"
+        name="avbetalningstid"
+        max={30}
+        min={0}
+        step ={1}
+        defaultValue ={0}
+        onChange={handleChange} />
+
         </div>
-  
+        <FinalePrice
+        types = {props.type}
+        data = {formData}
+        />
       </div>
+
+      
     );
   }
   

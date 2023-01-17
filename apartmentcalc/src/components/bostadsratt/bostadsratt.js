@@ -1,4 +1,5 @@
 import react from "react"
+import FinalePrice from "../finalPrice/finalpricecalc.js"
 function Bostadsratt(props) {
 
 
@@ -9,9 +10,9 @@ function Bostadsratt(props) {
         el: "0",
         sopor:"0",
         varme:"0",
+        avbetalningstid:"0",
     })
 
-    const [minimum,setminimum] = react.useState("0")
 
 
     function minValue(){
@@ -31,12 +32,9 @@ function Bostadsratt(props) {
 
 
     return (
-        <div className="flex flex-col items-center justify-center">
-  
-        <h1 className="text-slate-100 text-2xl">Bostadsrätt</h1>
-
+        <div className="flex flex-col items-center justify-center ">
+        <h1 className="text-slate-100 text-2xl">Villa</h1>
         <div className = "w-full flex flex-col items-center justify-center">
-
 
         <label className="block text-white text-l font-bold mb-2" >
         Inköpspris: {formData.inkopspris}kr
@@ -106,8 +104,25 @@ function Bostadsratt(props) {
         defaultValue ={0}
         onChange={handleChange} />
 
+        
+    <label className="block text-white text-l font-bold mb-2" >
+       Avbetalningstid: {formData.avbetalningstid} År
+      </label>
+        <input type="range"
+        name="avbetalningstid"
+        max={30}
+        min={0}
+        step ={1}
+        defaultValue ={0}
+        onChange={handleChange} />
+
+
         </div>
-  
+
+        <FinalePrice
+        types = {props.type}
+        data = {formData}
+        />
       </div>
     );
   }
