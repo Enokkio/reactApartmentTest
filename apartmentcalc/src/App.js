@@ -2,31 +2,20 @@ import logo from './logo.svg';
 import './App.css';
 import react from "react"
 
-import villa from "./components/villa/villa.js"
-import bostadsratt from "./components/bostadsratt/bostadsratt.js"
+import Villa from "./components/villa/villa.js"
+import Bostadsratt from "./components/bostadsratt/bostadsratt.js"
+import bostadsratt from './components/bostadsratt/bostadsratt.js';
 
 
 function App() {
-
-  const pages = {
-    villa: villa,
-    bostadsratt: bostadsratt,
-};
-
-  const [house, sethouse] = react.useState("null");
-  const [page,setPage] = react.useState(()=>pages[house])
+  const [house, sethouse] = react.useState("bostadsratt");
   
 
   const selectBostadsratt = () => sethouse("bostadsratt");//vi vill egentligen inte göra detta men det funkar. Vi vill typ ha en ... function som updaterar ett värde genom att kolla all elelr ngt
   const selectVilla = () => sethouse("villa");
 
-  react.useEffect(() => {
-    console.log(page)
-    setPage(pages[house])
-  }, [house]);
-
   return (
-    <div className=" flex items-center flex-col bg-slate-800 h-screen">
+    <div className=" flex items-center flex-col bg-slate-800 h-screen space-y-4">
         
       <div>   
            <h1 className="text-slate-100 text-4xl">Modern Day Housing Calculator</h1>
@@ -37,11 +26,27 @@ function App() {
       </div>
  
     <div className="flex items-center justify-center h-1/3">
-    {page}
+      {getView(house)}
     </div>
     
     </div>
   );
+}
+
+function getView(key) {
+  switch (key) {
+    case "villa":
+      
+      return <Villa/>
+
+
+      case "bostadsratt":
+        return <Bostadsratt/>
+  
+       
+    
+  
+  }
 }
 
 export default App;

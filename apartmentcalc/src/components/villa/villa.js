@@ -1,12 +1,96 @@
-function villa() {
+import react from "react"
+
+
+
+function Villa() {
+
+    const [formData,setFormData] = react.useState({
+        inkopspris:"0",
+        kontantinstats:"0",
+        ranta:"0",
+        avgift: "0",
+        ovrigt:"0",
+    })
+    
+    function handleChange(event) {    
+        setFormData(prevFormData => {
+            return {
+                ...prevFormData,
+                [event.target.name]: event.target.value
+            }
+        })
+    }
+ 
+
 
     return (
-      <div className="">
+      <div className="flex flex-col items-center justify-center">
   
-  <h1 className="text-slate-100 text-2xl">villa</h1>
+        <h1 className="text-slate-100 text-2xl">Villa</h1>
+
+        <div className = "w-64 flex flex-col items-center justify-center">
+
+
+        <label className="block text-white text-l font-bold mb-2" >
+        Inköpspris: {formData.inkopspris}kr
+      </label>
+        <input type="range"
+        name="inkopspris"
+        max={20000000}
+        min={0}
+        step ={25000}
+        defaultValue ={0}
+        onChange={handleChange} />
+
+
+    <label className="block text-white text-l font-bold mb-2" >
+        kontantinstats: {formData.kontantinstats}kr
+      </label>
+        <input type="range"
+        name="kontantinstats"
+        max={5000000}
+        min={0}
+        step ={10000}
+        defaultValue ={0}
+        onChange={handleChange} />
+
+    <label className="block text-white text-l font-bold mb-2" >
+        Ränta: {formData.ranta}%
+      </label>
+        <input type="range"
+        name="ranta"
+        max={15}
+        min={0}
+        step ={0.1}
+        defaultValue ={0}
+        onChange={handleChange} />
+
+    <label className="block text-white text-l font-bold mb-2" >
+        Avgift: {formData.avgift}kr
+      </label>
+        <input type="range"
+        name="avgift"
+        max={40000}
+        min={0}
+        step ={100}
+        defaultValue ={0}
+        onChange={handleChange} />
+
+    <label className="block text-white text-l font-bold mb-2" >
+       Övrigt: {formData.ovrigt}kr
+      </label>
+        <input type="range"
+        name="ovrigt"
+        max={40000}
+        min={0}
+        step ={100}
+        defaultValue ={0}
+        onChange={handleChange} />
+
+        </div>
   
       </div>
     );
   }
   
-  export default villa;
+  export default Villa;
