@@ -54,7 +54,7 @@ function Villa(props) {
       </label>
         <input type="range"
         name="kontantinstats"
-        max={5000000}
+        max={formData.inkopspris}
         min={minValue()}
         step ={10000}
         defaultValue ={minValue()}
